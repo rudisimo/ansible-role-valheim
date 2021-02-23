@@ -15,7 +15,7 @@ jobs:
       - name: Checkout the codebase.
         uses: actions/checkout@v2
         with:
-          path: rudisimo.steam
+          path: rudisimo.valheim
 
       - name: Set up Python 3.
         uses: actions/setup-python@v2
@@ -24,8 +24,8 @@ jobs:
 
       - name: Install dependencies.
         run: |
-          pip3 install -r requirements.txt
-          pip3 install -r requirements-ci.txt
+          pip3 install -r rudisimo.valheim/requirements.txt
+          pip3 install -r rudisimo.valheim/requirements-ci.txt
 
       - name: Lint codebase.
         run: |
