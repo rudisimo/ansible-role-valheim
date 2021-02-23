@@ -1,0 +1,29 @@
+---
+- name: configure | define paths
+  ansible.builtin.set_fact:
+    valheim_bin_path: /usr/local/bin
+    valheim_service_path: /etc/systemd/system
+
+- name: configure | add server script
+  ansible.builtin.template:
+    src: "{{ valheim_server_script_template }}"
+    dest: "{{ valheim_bin_path }}/{{ valheim_server_script_prefix }}_{{ item.port }}"
+    owner: root
+    group: root
+    mode: 0755
+  notify:
+    - restart valheim-servers
+  with_items: "{{ valheim_servers }}"
+  when: valheim_add_servers | bool
+
+- name: configure | add systemd service
+  ansible.builtin.template:
+    src: "{{ valheim_server_service_template }}"
+    dest: "{{ valheim_service_path }}/{{ valheim_server_service_prefix }}.{{ item.port }}.service"
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - restart valheim-servers
+  with_items: "{{ valheim_servers }}"
+  when: valheim_add_servers | bool

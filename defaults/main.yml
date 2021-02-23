@@ -1,0 +1,18 @@
+---
+valheim_install_path: /usr/local/games/valheim-server
+valheim_saves_path: /usr/local/share/valheim-server/data
+
+valheim_add_servers: false
+valheim_server_script_prefix: valheim_server
+valheim_server_script_template: valheim-server.sh.j2
+valheim_server_service_prefix: valheim-server
+valheim_server_service_template: valheim-server.service.j2
+valheim_servers: []
+
+valheim_global_administrators: []
+valheim_global_banned_users: []
+valheim_global_permitted_users: []
+
+valheim_steam_install: true
+valheim_steam_app_id: 892970
+valheim_steam_server_id: 896660

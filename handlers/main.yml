@@ -1,0 +1,13 @@
+---
+- name: stop valheim-servers
+  ansible.builtin.systemd:
+    name: "{{ valheim_server_service_prefix }}.{{ item.port }}"
+    state: "stopped"
+  loop: "{{ valheim_servers }}"
+
+- name: restart valheim-servers
+  ansible.builtin.systemd:
+    name: "{{ valheim_server_service_prefix }}.{{ item.port }}"
+    state: "restarted"
+    daemon_reload: true
+  loop: "{{ valheim_servers }}"

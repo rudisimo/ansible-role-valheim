@@ -1,0 +1,28 @@
+---
+- name: setup | define control user
+  ansible.builtin.set_fact:
+    valheim_control_user: "{{ steam_user | default(ansible_user_id) }}"
+  when: valheim_control_user is not defined
+
+- name: setup | create directories
+  ansible.builtin.file:
+    path: "{{ item }}"
+    owner: "{{ valheim_control_user }}"
+    group: "{{ valheim_control_user }}"
+    state: directory
+    mode: 0755
+  with_items:
+    - "{{ valheim_saves_path }}"
+
+- name: setup | install valheim
+  ansible.builtin.shell: >
+    test -e "{{ valheim_install_path }}" || \
+    ./steamcmd.sh \
+      +login {{ steam_account | default('anonymous') }} {{ steam_password | default('') }} \
+      +force_install_dir {{ valheim_install_path }} \
+      +app_update {{ valheim_steam_server_id }} validate \
+      +quit
+  args:
+    chdir: "{{ steam_install_path }}"
+  become_user: "{{ valheim_control_user }}"
+  when: valheim_steam_install | bool

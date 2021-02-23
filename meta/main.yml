@@ -1,0 +1,25 @@
+---
+dependencies: []
+
+galaxy_info:
+  role_name: valheim
+  description: Valheim Dedicated Server for Linux.
+  author: rudisimo
+  company: "Puig & Co."
+  license: "MIT"
+  min_ansible_version: 2.7
+  platforms:
+    - name: Debian
+      versions:
+        - all
+    - name: Ubuntu
+      versions:
+        - trusty
+        - xenial
+        - bionic
+  galaxy_tags:
+    - steam
+    - valheim
+    - games
+
+allow_duplicates: true
