@@ -8,7 +8,7 @@ This roles installs and configures the latest version of Valheim Dedicated Serve
 
 ## Requirements
 
-This role depends on [SteamCMD](https://developer.valvesoftware.com/wiki/SteamCMD) to install and configure the Valheim Dedicated Server binaries. Use the following Ansible Role to install it: [rudisimo/ansible-role-steamcmd](https://github.com/rudisimo/ansible-role-steamcmd)
+This role depends on [SteamCMD](https://developer.valvesoftware.com/wiki/SteamCMD) to install and configure the binaries for Valheim Dedicated Server. Use the following Ansible Role to install it: [rudisimo/ansible-role-steam](https://github.com/rudisimo/ansible-role-steam)
 
 ## Role Variables
 
@@ -60,9 +60,14 @@ valheim_global_permitted_users: []
 ## Example Playbook
 
 ```yaml
-- hosts: all
+- name: install the valheim dedicated server
+  hosts: all
+  become: yes
+
   roles:
-    - { role: rudisimo.valheim }
+    - role: rudisimo.steam
+    - role: rudisimo.valheim
+
   vars:
     steam_install_path: /opt/steam
     steam_user: steam
