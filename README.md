@@ -1,5 +1,7 @@
 # Ansible Role: Valheim
 
+[![CI](https://github.com/rudisimo/ansible-role-valheim/actions/workflows/ci.yml/badge.svg)](https://github.com/rudisimo/ansible-role-valheim/actions/workflows/ci.yml)
+
 Installs Valheim Dedicated Server on Debian/Ubuntu servers.
 
 This roles installs and configures the latest version of Valheim Dedicated Server from Steam.
