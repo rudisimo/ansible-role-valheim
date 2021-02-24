@@ -60,7 +60,7 @@ valheim_global_permitted_users: []
 ## Example Playbook
 
 ```yaml
-- name: install the valheim dedicated server
+- name: configure a valheim dedicated server
   hosts: all
   become: yes
 
@@ -72,9 +72,10 @@ valheim_global_permitted_users: []
     steam_install_path: /opt/steam
     steam_user: steam
 
-    valheim_add_servers: true
     valheim_install_path: /usr/local/games/valheim-server
     valheim_saves_path: /usr/local/share/valheim-server/data
+
+    valheim_add_servers: true
     valheim_servers:
       - name: Valheim
         port: 27001
